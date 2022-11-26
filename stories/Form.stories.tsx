@@ -25,6 +25,7 @@ const fields: FormProps['fields'] = {
   email: {
     type: 'text',
     label: 'email',
+    htmlType: 'email'
   },
 };
 

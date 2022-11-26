@@ -1,12 +1,18 @@
 import React from 'react';
 import { FormProps } from './types';
 import { FormProvider, useForm } from 'react-hook-form';
+import TextField from './components/TextField';
 
 const renderFields = (fields: FormProps['fields']) => {
   return (
     <div>
       {Object.entries(fields).map(
-        ([fieldName, field]) => fieldName + ':' + JSON.stringify(field)
+        ([fieldName, field]) => {
+            if(field.type === 'text') {
+                return <TextField {{...field, name: fieldName}} />
+            }
+            return 'notText'
+        }
       )}
     </div>
   );
