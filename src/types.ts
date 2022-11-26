@@ -13,10 +13,17 @@ type defaultProps = {
 export type TextFieldProps = FieldSchema &
   defaultProps & {
     type: 'text';
-    htmlType: HTMLInputTypeAttribute
+    htmlType: HTMLInputTypeAttribute;
   };
 
-export type Field = TextFieldProps;
+export type NumberFieldProps = FieldSchema &
+  defaultProps & {
+    type: 'number';
+    min?: number;
+    max?: number;
+  };
+
+export type Field = TextFieldProps | NumberFieldProps;
 
 export type Fields = Record<string, Field>;
 export interface FormProps {

@@ -2,6 +2,7 @@ import React from 'react';
 import { FormProps } from './types';
 import { FormProvider, useForm } from 'react-hook-form';
 import TextField from './components/TextField';
+import NumberField from './components/NumberField';
 
 const renderFields = (fields: FormProps['fields']) => {
   return (
@@ -10,7 +11,10 @@ const renderFields = (fields: FormProps['fields']) => {
         if (field.type === 'text') {
           return <TextField key={fieldName} {...field} name={fieldName} />;
         }
-        return 'notText';
+        if (field.type === 'number') {
+          return <NumberField key={fieldName} {...field} name={fieldName} />;
+        }
+        return `Unknown type for a field: ${fieldName}`;
       })}
     </div>
   );
