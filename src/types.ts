@@ -5,25 +5,31 @@ type FieldSchema = {
   type: 'text' | 'number' | 'array' | 'object';
 };
 
-type defaultProps = {
+type DefaultProps = {
   label: string;
   placeholder?: string;
 };
 
 export type TextFieldProps = FieldSchema &
-  defaultProps & {
+  DefaultProps & {
     type: 'text';
-    htmlType: HTMLInputTypeAttribute;
+    htmlType?: HTMLInputTypeAttribute;
   };
 
 export type NumberFieldProps = FieldSchema &
-  defaultProps & {
+  DefaultProps & {
     type: 'number';
     min?: number;
     max?: number;
   };
 
-export type Field = TextFieldProps | NumberFieldProps;
+export type ObjectFieldProps = FieldSchema &
+  DefaultProps & {
+    type: 'object';
+    properties: Fields;
+  };
+
+export type Field = TextFieldProps | NumberFieldProps | ObjectFieldProps;
 
 export type Fields = Record<string, Field>;
 export interface FormProps {

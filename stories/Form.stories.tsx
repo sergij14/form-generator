@@ -33,6 +33,21 @@ const fields: FormProps['fields'] = {
     label: 'age',
     min: 18,
   },
+
+  details: {
+    type: 'object',
+    label: 'details',
+    properties: {
+      firstName: {
+        type: 'text',
+        label: 'name',
+      },
+      lastName: {
+        type: 'text',
+        label: 'last name',
+      },
+    },
+  },
 };
 
 export const Default = Template.bind({});
