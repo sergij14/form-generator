@@ -3,7 +3,7 @@ import { Meta, Story } from '@storybook/react';
 import { Form, FormProps } from '../src';
 
 const meta: Meta = {
-  title: 'Welcome',
+  title: 'Form',
   component: Form,
   argTypes: {
     children: {
