@@ -5,7 +5,7 @@ import { Form, FormProps } from '../src';
 const meta: Meta = {
   title: 'Form',
   component: Form,
-    argTypes: {
+  argTypes: {
     children: {
       control: {
         type: 'text',
@@ -13,7 +13,7 @@ const meta: Meta = {
     },
   },
   parameters: {
-    controls: { include: ['fields] },
+    controls: { include: ['fields'] },
   },
 };
 
