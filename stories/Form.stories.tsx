@@ -5,6 +5,13 @@ import { Form, FormProps } from '../src';
 const meta: Meta = {
   title: 'Form',
   component: Form,
+    argTypes: {
+    children: {
+      control: {
+        type: 'text',
+      },
+    },
+  },
   parameters: {
     controls: { include: ['fields] },
   },
