@@ -1,9 +1,9 @@
 import { SubmitHandler, FieldValues } from 'react-hook-form';
 
-type SingleFieldType = 'text' | 'number';
+export type FieldType = 'text' | 'number';
 
 type FieldSchema = {
-  type: SingleFieldType | 'object';
+  type: FieldType | 'object';
 };
 
 type DefaultProps = {
@@ -33,7 +33,7 @@ type NumberValidation = {
   max: MinMaxValidation;
 };
 
-export type FieldProps<T extends SingleFieldType> = {
+export type FieldProps<T extends FieldType> = {
   type: T;
   validation?: Partial<T extends 'text' ? TextValidation : NumberValidation>;
 } & FieldSchema &

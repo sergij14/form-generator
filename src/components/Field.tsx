@@ -1,14 +1,14 @@
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import { Error, Input, Label } from '../Form.styles';
-import { FieldProps } from '../Form.types';
+import { FieldProps, FieldType } from '../Form.types';
 
-function TextField(props: FieldProps<'text'> & { name: string }) {
+function Field<T extends FieldType>(props: FieldProps<T> & { name: string }) {
   const {
     register,
     formState: { errors },
   } = useFormContext();
-  const { label, name, placeholder, validation } = props;
+  const { label, name, placeholder, validation, type } = props;
 
   const hasError = errors[name] ? true : false;
 
@@ -18,7 +18,7 @@ function TextField(props: FieldProps<'text'> & { name: string }) {
       <Input
         id={name}
         hasError={errors[name] ? true : false}
-        type="text"
+        type={type}
         placeholder={placeholder}
         {...register(name, validation)}
       />
@@ -27,4 +27,4 @@ function TextField(props: FieldProps<'text'> & { name: string }) {
   );
 }
 
-export default TextField;
+export default Field;

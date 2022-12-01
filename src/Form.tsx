@@ -1,8 +1,7 @@
 import React from 'react';
 import { FormProps, ObjectFieldProps } from './Form.types';
 import { FormProvider, useForm } from 'react-hook-form';
-import TextField from './components/TextField';
-import NumberField from './components/NumberField';
+import Field from './components/Field';
 import { Button, MainLabel } from './Form.styles';
 
 const ObjectField = (props: ObjectFieldProps & { name: string }) => {
@@ -21,10 +20,10 @@ const renderFields = (fields: FormProps['fields']) => {
     <div>
       {Object.entries(fields).map(([fieldName, field]) => {
         if (field.type === 'text') {
-          return <TextField key={fieldName} {...field} name={fieldName} />;
+          return <Field key={fieldName} {...field} name={fieldName} />;
         }
         if (field.type === 'number') {
-          return <NumberField key={fieldName} {...field} name={fieldName} />;
+          return <Field key={fieldName} {...field} name={fieldName} />;
         }
         if (field.type === 'object') {
           return <ObjectField key={fieldName} {...field} name={fieldName} />;
