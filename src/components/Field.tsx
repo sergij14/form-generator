@@ -17,7 +17,7 @@ function Field<T extends FieldType>(props: FieldProps<T> & { name: string }) {
       <Label htmlFor={name}>{label}</Label>
       <Input
         id={name}
-        hasError={errors[name] ? true : false}
+        hasError={hasError}
         type={type}
         placeholder={placeholder}
         {...register(name, validation)}

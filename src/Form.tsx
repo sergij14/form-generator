@@ -41,7 +41,7 @@ export const Form = ({ fields, onSubmit }: FormProps) => {
     <FormProvider {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         {renderFields(fields)}
-        <Button type="submit">save</Button>
+        <Button type="submit">Save</Button>
       </form>
     </FormProvider>
   );
