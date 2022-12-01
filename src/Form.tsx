@@ -1,15 +1,16 @@
 import React from 'react';
-import { FormProps, ObjectFieldProps } from './types';
+import { FormProps, ObjectFieldProps } from './Form.types';
 import { FormProvider, useForm } from 'react-hook-form';
 import TextField from './components/TextField';
 import NumberField from './components/NumberField';
+import { Button, MainLabel } from './Form.styles';
 
 const ObjectField = (props: ObjectFieldProps & { name: string }) => {
   const { label, properties } = props;
 
   return (
     <div>
-      <label>{label}</label>
+      <MainLabel>{label}</MainLabel>
       {renderFields(properties)}
     </div>
   );
@@ -41,7 +42,7 @@ export const Form = ({ fields, onSubmit }: FormProps) => {
     <FormProvider {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         {renderFields(fields)}
-        <button type="submit">save</button>
+        <Button type="submit">save</Button>
       </form>
     </FormProvider>
   );

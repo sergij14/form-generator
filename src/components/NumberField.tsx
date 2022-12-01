@@ -1,6 +1,7 @@
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import { FieldProps } from '../types';
+import { Error, Input, Label } from '../Form.styles';
+import { FieldProps } from '../Form.types';
 
 function NumberField(props: FieldProps<'number'> & { name: string }) {
   const {
@@ -9,16 +10,19 @@ function NumberField(props: FieldProps<'number'> & { name: string }) {
   } = useFormContext();
   const { label, name, placeholder, validation } = props;
 
+  const hasError = errors[name] ? true : false;
+
   return (
     <div>
-      <label htmlFor={name}>{label}</label>
-      <input
+      <Label htmlFor={name}>{label}</Label>
+      <Input
+        hasError={hasError}
         id={name}
         type="number"
         placeholder={placeholder}
         {...register(name, validation)}
       />
-      {errors[name] && <p>{`${errors[name]?.message}`}</p>}
+      {hasError && <Error>{`${errors[name]?.message}`}</Error>}
     </div>
   );
 }

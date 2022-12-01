@@ -24,7 +24,7 @@ const Template: Story<FormProps> = (args) => <Form {...args} />;
 const fields: FormProps['fields'] = {
   email: {
     type: 'text',
-    label: 'email',
+    label: 'Email',
     validation: {
       required: {
         value: true,
@@ -35,7 +35,7 @@ const fields: FormProps['fields'] = {
 
   age: {
     type: 'number',
-    label: 'age',
+    label: 'Age',
     validation: {
       required: {
         value: true,
@@ -50,15 +50,15 @@ const fields: FormProps['fields'] = {
 
   details: {
     type: 'object',
-    label: 'details',
+    label: 'Details',
     properties: {
       firstName: {
         type: 'text',
-        label: 'name',
+        label: 'Name',
       },
       lastName: {
         type: 'text',
-        label: 'last name',
+        label: 'Last name',
       },
     },
   },
