@@ -1,8 +1,8 @@
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import { NumberFieldProps } from '../types';
+import { FieldProps } from '../types';
 
-function NumberField(props: NumberFieldProps & { name: string }) {
+function NumberField(props: FieldProps<'number'> & { name: string }) {
   const {
     register,
     formState: { errors },

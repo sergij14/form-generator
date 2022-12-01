@@ -1,7 +1,9 @@
 import { SubmitHandler, FieldValues } from 'react-hook-form';
 
+type SingleFieldType = 'text' | 'number';
+
 type FieldSchema = {
-  type: 'text' | 'number' | 'object';
+  type: SingleFieldType | 'object';
 };
 
 type DefaultProps = {
@@ -9,47 +11,33 @@ type DefaultProps = {
   placeholder?: string;
 };
 
+type RequiredValidation = {
+  value: boolean;
+  message: string;
+};
+
+type MinMaxValidation = {
+  value: number;
+  message: string;
+};
+
 type TextValidation = {
-  required: {
-    value: boolean;
-    message: string;
-  };
-  minLength: {
-    value: number;
-    message: string;
-  };
-  maxLength: {
-    value: number;
-    message: string;
-  };
+  required: RequiredValidation;
+  minLength: MinMaxValidation;
+  maxLength: MinMaxValidation;
 };
 
 type NumberValidation = {
-  required: {
-    value: boolean;
-    message: string;
-  };
-  min: {
-    value: number;
-    message: string;
-  };
-  max: {
-    value: number;
-    message: string;
-  };
+  required: RequiredValidation;
+  min: MinMaxValidation;
+  max: MinMaxValidation;
 };
 
-export type TextFieldProps = FieldSchema &
-  DefaultProps & {
-    type: 'text';
-    validation?: Partial<TextValidation>;
-  };
-
-export type NumberFieldProps = FieldSchema &
-  DefaultProps & {
-    type: 'number';
-    validation?: Partial<NumberValidation>;
-  };
+export type FieldProps<T extends SingleFieldType> = {
+  type: T;
+  validation?: Partial<T extends 'text' ? TextValidation : NumberValidation>;
+} & FieldSchema &
+  DefaultProps;
 
 export type ObjectFieldProps = FieldSchema &
   DefaultProps & {
@@ -57,7 +45,7 @@ export type ObjectFieldProps = FieldSchema &
     properties: Fields;
   };
 
-export type Field = TextFieldProps | NumberFieldProps | ObjectFieldProps;
+export type Field = FieldProps<'text'> | FieldProps<'number'> | ObjectFieldProps;
 
 export type Fields = Record<string, Field>;
 export interface FormProps {

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import { TextFieldProps } from '../types';
+import { FieldProps } from '../types';
 
-function TextField(props: TextFieldProps & { name: string }) {
+function TextField(props: FieldProps<'text'> & { name: string }) {
   const {
     register,
     formState: { errors },
