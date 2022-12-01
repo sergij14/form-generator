@@ -3,8 +3,11 @@ import { useFormContext } from 'react-hook-form';
 import { NumberFieldProps } from '../types';
 
 function NumberField(props: NumberFieldProps & { name: string }) {
-  const { register } = useFormContext();
-  const { label, name, placeholder } = props;
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
+  const { label, name, placeholder, validation } = props;
 
   return (
     <div>
@@ -13,8 +16,9 @@ function NumberField(props: NumberFieldProps & { name: string }) {
         id={name}
         type="number"
         placeholder={placeholder}
-        {...register(name)}
+        {...register(name, validation)}
       />
+      {errors[name] && <p>{`${errors[name]?.message}`}</p>}
     </div>
   );
 }

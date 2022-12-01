@@ -1,8 +1,7 @@
-import { HTMLInputTypeAttribute } from 'react';
 import { SubmitHandler, FieldValues } from 'react-hook-form';
 
 type FieldSchema = {
-  type: 'text' | 'number' | 'array' | 'object';
+  type: 'text' | 'number' | 'object';
 };
 
 type DefaultProps = {
@@ -10,17 +9,46 @@ type DefaultProps = {
   placeholder?: string;
 };
 
+type TextValidation = {
+  required: {
+    value: boolean;
+    message: string;
+  };
+  minLength: {
+    value: number;
+    message: string;
+  };
+  maxLength: {
+    value: number;
+    message: string;
+  };
+};
+
+type NumberValidation = {
+  required: {
+    value: boolean;
+    message: string;
+  };
+  min: {
+    value: number;
+    message: string;
+  };
+  max: {
+    value: number;
+    message: string;
+  };
+};
+
 export type TextFieldProps = FieldSchema &
   DefaultProps & {
     type: 'text';
-    htmlType?: HTMLInputTypeAttribute;
+    validation?: Partial<TextValidation>;
   };
 
 export type NumberFieldProps = FieldSchema &
   DefaultProps & {
     type: 'number';
-    min?: number;
-    max?: number;
+    validation?: Partial<NumberValidation>;
   };
 
 export type ObjectFieldProps = FieldSchema &

@@ -3,18 +3,22 @@ import { useFormContext } from 'react-hook-form';
 import { TextFieldProps } from '../types';
 
 function TextField(props: TextFieldProps & { name: string }) {
-  const { register } = useFormContext();
-  const { label, name, htmlType = 'text', placeholder } = props;
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
+  const { label, name, placeholder, validation } = props;
 
   return (
     <div>
       <label htmlFor={name}>{label}</label>
       <input
         id={name}
-        type={htmlType}
+        type="text"
         placeholder={placeholder}
-        {...register(name)}
+        {...register(name, validation)}
       />
+      {errors[name] && <p>{`${errors[name]?.message}`}</p>}
     </div>
   );
 }

@@ -19,19 +19,33 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story<FormProps> = args => <Form {...args} />;
+const Template: Story<FormProps> = (args) => <Form {...args} />;
 
 const fields: FormProps['fields'] = {
   email: {
     type: 'text',
     label: 'email',
-    htmlType: 'text',
+    validation: {
+      required: {
+        value: true,
+        message: 'Field is required',
+      },
+    },
   },
 
   age: {
     type: 'number',
     label: 'age',
-    min: 18,
+    validation: {
+      required: {
+        value: true,
+        message: 'Field is required',
+      },
+      min: {
+        value: 18,
+        message: 'Min age is 18',
+      },
+    },
   },
 
   details: {
@@ -54,7 +68,7 @@ export const Default = Template.bind({});
 
 Default.args = {
   fields,
-  onSubmit: values => {
+  onSubmit: (values) => {
     console.log(values);
   },
 };
