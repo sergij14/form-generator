@@ -1,25 +1,6 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
+import { ArgTypes, ComponentMeta, Meta, Story } from '@storybook/react';
 import { Form, FormProps } from '../src';
-
-const meta: Meta = {
-  title: 'Form',
-  component: Form,
-  argTypes: {
-    children: {
-      control: {
-        type: 'text',
-      },
-    },
-  },
-  parameters: {
-    controls: { include: ['fields'] },
-  },
-};
-
-export default meta;
-
-const Template: Story<FormProps> = (args) => <Form {...args} />;
 
 const fields: FormProps['fields'] = {
   email: {
@@ -64,11 +45,46 @@ const fields: FormProps['fields'] = {
   },
 };
 
-export const Default = Template.bind({});
-
-Default.args = {
-  fields,
-  onSubmit: (values) => {
-    console.log(values);
+const formControls: Partial<ArgTypes<FormProps>> = {
+  fields: {
+    name: 'Fields',
+    description: 'Fields schema for generating the form',
+    table: {
+      type: {
+        summary: JSON.stringify(
+          {
+            fields: {
+              email: {
+                type: 'text',
+                label: 'Email',
+              },
+            },
+          },
+          null,
+          4
+        ),
+      },
+    },
   },
 };
+
+export default {
+  title: 'Form',
+  component: Form,
+  args: {
+    fields,
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  },
+  argTypes: formControls,
+  parameters: {
+    controls: {
+      include: Object.values(formControls).map((control) => control.name),
+    },
+  },
+} as ComponentMeta<typeof Form>;
+
+const Template: Story<FormProps> = (args) => <Form {...args} />;
+
+export const Default = Template.bind({});
